@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @demo.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @demo.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @demo.price %>
+</p>
+
+<p>
+  <strong>Prefecture:</strong>
+  <%= @demo.prefecture_type.name %>
+</p>
+
+<p>
+ <% if @demo.thumnail? %>
+　　<%= image_tag @demo.thumnail.url %>
+　<% else %>
+　　<%= image_tag 'noimage.jpg' %>
+　<% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_demo_path(@demo) %> |
+<%= link_to 'Back', demos_path %>

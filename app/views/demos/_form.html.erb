@@ -1,0 +1,38 @@
+<%= form_for(@demo) do |f| %>
+  <% if @demo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@demo.errors.count, "error") %> prohibited this demo from being saved:</h2>
+
+      <ul>
+      <% @demo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :prefecture %><br>
+    <%= f.collection_select :prefecture_type_id, PrefectureType.all, :id, :name %>
+  </div>
+  <div class="field">
+  <%= f.label :thumnail %>
+　　<%= f.file_field :thumnail %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

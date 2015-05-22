@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: demos
+#
+#  id                 :integer          not null, primary key
+#  name               :string
+#  title              :string
+#  price              :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  prefecture_type_id :string
+#  thumnail           :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  title: MyString
+  price: 1
+
+two:
+  name: MyString
+  title: MyString
+  price: 1

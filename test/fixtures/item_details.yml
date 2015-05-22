@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: item_details
+#
+#  id         :integer          not null, primary key
+#  shop_code  :string
+#  item_code  :string
+#  sku_code   :string
+#  price      :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop_code: MyString
+  item_code: MyString
+  sku_code: MyString
+  price: 1
+
+two:
+  shop_code: MyString
+  item_code: MyString
+  sku_code: MyString
+  price: 1

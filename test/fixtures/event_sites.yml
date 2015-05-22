@@ -1,0 +1,50 @@
+# == Schema Information
+#
+# Table name: event_sites
+#
+#  id                      :integer          not null, primary key
+#  event_site_code         :string
+#  prefecture_type_id      :string
+#  name                    :string
+#  near_station            :string
+#  access_route            :string
+#  host_comment            :string
+#  carpark_type_id         :string
+#  capacity                :integer
+#  degrees_of_latitude     :string
+#  degrees_of_longitude    :string
+#  privately_owned_type_id :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  organization_id         :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  association_code: MyString
+  event_site_code: MyString
+  prefecture_type_id: MyString
+  event_site_name: MyString
+  near_station: MyString
+  access_route: MyString
+  host_comment: MyString
+  carpark_type_id: MyString
+  capacity: 1
+  degrees_of_latitude: MyString
+  degree_of_longitude: MyString
+  privately_owned_type_id: MyString
+
+two:
+  association_code: MyString
+  event_site_code: MyString
+  prefecture_type_id: MyString
+  event_site_name: MyString
+  near_station: MyString
+  access_route: MyString
+  host_comment: MyString
+  carpark_type_id: MyString
+  capacity: 1
+  degrees_of_latitude: MyString
+  degree_of_longitude: MyString
+  privately_owned_type_id: MyString

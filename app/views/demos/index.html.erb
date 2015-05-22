@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<%= form_tag('/demos', :method => :get) do %>
+<ul>
+  <li><%= text_field_tag :name, params[:name] %></li>
+  <li><%= text_field_tag :title, params[:title] %></li>
+  <li><%= text_field_tag :price, params[:price] %></li>
+  <li><%= select_tag('prefecture_type_id',options_from_collection_for_select(@prefectures, 'id', 'name', params[:prefecture_type_id].to_i), :prompt => "-----") %></li>
+  <li><%= submit_tag '検索', name: nil %></li>
+</ul><% end %>
+
+<% session[:cart].each do |key,value| %>
+<%= key %>:::::::::::::::::::::::::<%= value %>
+<br/>
+<% end %>
+
+<% @items.each do |item| %>
+[<%= item.item_code %>:::<%= item.item_name %>]
+<%= link_to 'カート追加', controller: "demos", action: "addcart", sc: item.shop_code, ic: item.item_code %>
+<%= link_to 'カート削除', controller: "demos", action: "removecart", sc: item.shop_code, ic: item.item_code %>
+<br/>
+<% end %>
+<%= link_to 'クリア', controller: "demos", action: "clearcart" %>
+<br/>
+
+<%= link_to '更新', {controller: "demos", action: "timesupdate"}, remote: true, format: 'js' %>
+<div id="result"></div>
+
+<div id="cli">click</div>
+<div id="testes">
+  はっひふっへほー
+</div>
+
+<%= paginate @demos %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Prefecture</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @demos.each do |demo| %>
+    <tr>
+      <td><%= link_to demo.name, edit_demo_path(demo) %></td>
+      <td><%= demo.title %></td>
+      <td><%= demo.format_price %></td>
+      <td><%= demo.prefecture_type.name %></td>
+      <td><%= demo.thumnails %></td>
+      <td><%= link_to 'Destroy', demo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'Update Time', '/demos/timesupdate' %>
+<%= link_to 'New Demo', new_demo_path %>
