@@ -25,4 +25,7 @@ $(function() {
 	$("body").dblclick(function(){
 		$("#cli").text('mumumu');
 	});
+	$("body").dblclick(function(){
+		$("#cli2").text('mumumu');
+	});
 });
