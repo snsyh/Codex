@@ -1,13 +1,8 @@
 class DemosController < InheritedResources::Base
   def index
-    @demos = Demo.cond_name(params[:sc][:name]).cond_title(params[:sc][:title]).cond_price(params[:sc][:price]).cond_prefecture(params[:sc][:prefecture_type_id]).page(params[:page]).decorate
-    @items = ItemHeader.all
     @front_search_condition = FrontSearchCondition.new(params)
-  end
-
-  def timesupdate
-    @time = Time.now.to_s
-    render
+    @items = ItemHeader.all
+    @demos = Demo.cond_name(@front_search_condition.name).cond_title(@front_search_condition.title).cond_price(@front_search_condition.price).cond_prefecture(@front_search_condition.prefecture_type_id).page(params[:page]).decorate
   end
 
   def addcart

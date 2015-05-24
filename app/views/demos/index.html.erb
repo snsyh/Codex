@@ -4,7 +4,7 @@
 <li><%= f.text_field :name %></li>
 <li><%= f.text_field :title %></li>
 <li><%= f.text_field :price %></li>
-<li><%= f.select('prefecture_type_id', options_from_collection_for_select(@prefectures, 'id', 'name', params[:sc][:prefecture_type_id].to_i), :include_blank => true) %></li>
+<li><%= f.select(:prefecture_type_id, options_from_collection_for_select(@prefectures, :id, :name, @front_search_condition.prefecture_type_id.to_i), :include_blank => true) %></li>
 <%= f.submit '検索' %>
 <% end %>
 
@@ -15,17 +15,12 @@
 
 <% @items.each do |item| %>
 [<%= item.item_code %>:::<%= item.item_name %>]
-<%= link_to 'カート追加', controller: "demos", action: "addcart", sc: item.shop_code, ic: item.item_code %>
+<%= link_to 'カート追加', controller: "demos", action: "addcart" ,sc: item.shop_code, ic: item.item_code %>
 <%= link_to 'カート削除', controller: "demos", action: "removecart", sc: item.shop_code, ic: item.item_code %>
 <br/>
 <% end %>
 <%= link_to 'クリア', controller: "demos", action: "clearcart" %>
 <br/>
-
-<%= link_to '更新', {controller: "demos", action: "timesupdate"}, remote: true, format: 'js' %>
-<div id="result">
-  aaaaaaaaaa
-</div>
 
 <div id="cli">
   click&nbsp;click&nbsp;click
@@ -34,7 +29,6 @@ aaaaaaaaaaaa
 <div id="testes">
   はっひふっへほー
 </div>
-<%= link_to 'Update Time', '/demos/timesupdate' %>
 
 <%= paginate @demos %>
 <table>
@@ -51,7 +45,7 @@ aaaaaaaaaaaa
   <tbody>
     <% @demos.each do |demo| %>
     <tr>
-      <td><%= link_to demo.name, edit_demo_path(demo) %></td>
+      <td><%= demo.name %></td>
       <td><%= demo.title %></td>
       <td><%= demo.format_price %></td>
       <td><%= demo.prefecture_type.name %></td>
