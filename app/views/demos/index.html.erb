@@ -5,7 +5,7 @@
 <li><%= f.text_field :title %></li>
 <li><%= f.text_field :price %></li>
 <li><%= f.select('prefecture_type_id', options_from_collection_for_select(@prefectures, 'id', 'name', params[:sc][:prefecture_type_id].to_i), :include_blank => true) %></li>
-<%= f.submit %>
+<%= f.submit '検索' %>
 <% end %>
 
 <% session[:cart].each do |key,value| %>
@@ -34,6 +34,7 @@ aaaaaaaaaaaa
 <div id="testes">
   はっひふっへほー
 </div>
+<%= link_to 'Update Time', '/demos/timesupdate' %>
 
 <%= paginate @demos %>
 <table>
@@ -43,7 +44,7 @@ aaaaaaaaaaaa
       <th>Title</th>
       <th>Price</th>
       <th>Prefecture</th>
-      <th></th>
+      <th>Region</th>
       <th></th>
     </tr>
   </thead>
@@ -54,13 +55,11 @@ aaaaaaaaaaaa
       <td><%= demo.title %></td>
       <td><%= demo.format_price %></td>
       <td><%= demo.prefecture_type.name %></td>
+      <td><%= demo.region_name(demo.prefecture_type).name %></td>
       <td><%= demo.thumnails %></td>
-      <td><%= link_to 'Destroy', demo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 <br>
 
-<%= link_to 'Update Time', '/demos/timesupdate' %>
-<%= link_to 'New Demo', new_demo_path %>

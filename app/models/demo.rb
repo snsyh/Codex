@@ -25,4 +25,9 @@ class Demo < ActiveRecord::Base
   def prefecture_type_name
     PrefectureType::NAME[self.prefecture_type_id]
   end
+  
+  def region_name(prefecture_type)
+    RegionArea.where(code: prefecture_type[:region_code])[0]
+  end
+  
 end
