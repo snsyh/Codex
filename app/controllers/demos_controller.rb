@@ -6,13 +6,13 @@ class DemosController < InheritedResources::Base
   end
 
   def addcart
-    itemheader = ItemHeader.where("shop_code = ? and item_code = ?", params[:sc], params[:ic]).first
+    itemheader = ItemHeader.where("shop_code = ? and item_code = ?", params[:shop_code], params[:item_code]).first
     cart_add(itemheader, 1)
     redirect_to "/demos"
   end
 
   def removecart
-    cart_remove(params[:sc],params[:ic])
+    cart_remove(params[:shop_code],params[:item_code])
     redirect_to "/demos"
   end
 
