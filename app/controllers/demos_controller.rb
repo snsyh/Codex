@@ -1,13 +1,13 @@
 class DemosController < InheritedResources::Base
   def index
-    @demos = Demo.cond_name(params[:name]).cond_title(params[:title]).cond_price(params[:price]).cond_prefecture(params[:prefecture_type_id]).page(params[:page]).decorate
+    @front_search_condition = FrontSearchCondition.new(params[:sc])
+    @demos = Demo.cond_name(params[:sc][:name]).cond_title(params[:sc][:title]).cond_price(params[:sc][:price]).cond_prefecture(params[:sc][:prefecture_type_id]).page(params[:page]).decorate
     @items = ItemHeader.all
   end
 
   def timesupdate
     @time = Time.now.to_s
     render
-#    render json: { status: 'success' }
   end
 
   def addcart
@@ -27,10 +27,6 @@ class DemosController < InheritedResources::Base
   end
 
   private
-
-  def demo_params
-    params.require(:demo).permit(:name, :title, :price, :prefecture_type_id, :thumnail)
-  end
 
 end
 

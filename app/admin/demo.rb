@@ -14,5 +14,6 @@ ActiveAdmin.register Demo do
   #   permitted
   # end
 
+  permit_params :name, :title, :price, :prefecture_type_id, :thumnail
 
 end

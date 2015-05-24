@@ -1,13 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= form_tag('/demos', :method => :get) do %>
-<ul>
-  <li><%= text_field_tag :name, params[:name] %></li>
-  <li><%= text_field_tag :title, params[:title] %></li>
-  <li><%= text_field_tag :price, params[:price] %></li>
-  <li><%= select_tag('prefecture_type_id',options_from_collection_for_select(@prefectures, 'id', 'name', params[:prefecture_type_id].to_i), :prompt => "-----") %></li>
-  <li><%= submit_tag '検索', name: nil %></li>
-</ul><% end %>
+<%= form_for @front_search_condition, as: :sc, url: '/demos', :method => :get do |f| %>
+<li><%= f.text_field :name %></li>
+<li><%= f.text_field :title %></li>
+<li><%= f.text_field :price %></li>
+<%= f.submit %>
+<% end %>
 
 <% session[:cart].each do |key,value| %>
 <%= key %>:::::::::::::::::::::::::<%= value %>
@@ -24,9 +22,14 @@
 <br/>
 
 <%= link_to '更新', {controller: "demos", action: "timesupdate"}, remote: true, format: 'js' %>
-<div id="result">aaaaaaaaaa</div>
+<div id="result">
+  aaaaaaaaaa
+</div>
 
-<div id="cli">click&nbsp;click&nbsp;click</div>aaaaaaaaaaaa
+<div id="cli">
+  click&nbsp;click&nbsp;click
+</div>
+aaaaaaaaaaaa
 <div id="testes">
   はっひふっへほー
 </div>
@@ -49,7 +52,6 @@
       <td><%= link_to demo.name, edit_demo_path(demo) %></td>
       <td><%= demo.title %></td>
       <td><%= demo.format_price %></td>
-      <td><%= demo.prefecture_type.name %></td>
       <td><%= demo.thumnails %></td>
       <td><%= link_to 'Destroy', demo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
