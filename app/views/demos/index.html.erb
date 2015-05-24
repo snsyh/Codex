@@ -4,6 +4,7 @@
 <li><%= f.text_field :name %></li>
 <li><%= f.text_field :title %></li>
 <li><%= f.text_field :price %></li>
+<li><%= f.select('prefecture_type_id', options_from_collection_for_select(@prefectures, 'id', 'name', params[:sc][:prefecture_type_id].to_i), :include_blank => true) %></li>
 <%= f.submit %>
 <% end %>
 
@@ -52,6 +53,7 @@ aaaaaaaaaaaa
       <td><%= link_to demo.name, edit_demo_path(demo) %></td>
       <td><%= demo.title %></td>
       <td><%= demo.format_price %></td>
+      <td><%= demo.prefecture_type.name %></td>
       <td><%= demo.thumnails %></td>
       <td><%= link_to 'Destroy', demo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

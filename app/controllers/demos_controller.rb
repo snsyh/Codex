@@ -1,8 +1,8 @@
 class DemosController < InheritedResources::Base
   def index
-    @front_search_condition = FrontSearchCondition.new(params[:sc])
     @demos = Demo.cond_name(params[:sc][:name]).cond_title(params[:sc][:title]).cond_price(params[:sc][:price]).cond_prefecture(params[:sc][:prefecture_type_id]).page(params[:page]).decorate
     @items = ItemHeader.all
+    @front_search_condition = FrontSearchCondition.new(params)
   end
 
   def timesupdate
