@@ -8,17 +8,21 @@ class DemosController < InheritedResources::Base
   def addcart
     itemheader = ItemHeader.where("shop_code = ? and item_code = ?", params[:shop_code], params[:item_code]).first
     cart_add(itemheader, 1)
-    redirect_to "/demos"
+    render :json => session[:cart]
   end
 
   def removecart
     cart_remove(params[:shop_code],params[:item_code])
-    redirect_to "/demos"
+    render :json => session[:cart]
   end
 
   def clearcart
     cart_clear
-    redirect_to "/demos"
+    render :json => session[:cart]
+  end
+
+  def ajax
+    render :json => session[:cart]
   end
 
   private

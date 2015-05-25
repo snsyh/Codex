@@ -8,27 +8,24 @@
 <%= f.submit '検索' %>
 <% end %>
 
-<% session[:cart].each do |key,value| %>
-<%= key %>:::::::::::::::::::::::::<%= value %>
-<br/>
-<% end %>
+<div id="testes">
+  はっひふっへほー
+</div>
 
 <% @items.each do |item| %>
-[<%= item.item_code %>:::<%= item.item_name %>]
-<%= link_to 'カート追加', controller: "demos", action: "addcart" , shop_code: item.shop_code, item_code: item.item_code %>
-<%= link_to 'カート削除', controller: "demos", action: "removecart", shop_code: item.shop_code, item_code: item.item_code %>
+[<%= item.item_name %>]
+
+<input type="button" value="追加" class="addcart" id="<%= item.shop_code %>_<%= item.item_code %>">
+<input type="button" value="削除" class="removecart" id="<%= item.shop_code %>_<%= item.item_code %>">
 <br/>
 <% end %>
-<%= link_to 'クリア', controller: "demos", action: "clearcart" %>
+<input type="button" value="クリア" class="clearcart">
 <br/>
 
 <div id="cli">
   click&nbsp;click&nbsp;click
 </div>
 aaaaaaaaaaaa
-<div id="testes">
-  はっひふっへほー
-</div>
 
 <%= paginate @demos %>
 <table>

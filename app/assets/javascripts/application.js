@@ -17,15 +17,71 @@
 //= require_tree .
 //= require modernizr
 
-$(function() {
-	$("#cli").click(function() {
-		$("#testes").text('aaaaaa');
-		$("#testes").toggle();
+$(document).ready(function() {
+	$(".addcart").click(function() {
+		var shop_item = $(this).attr("id").split("_");
+		$.ajax({
+			url : "/demos/addcart",
+			type : "POST",
+			dataType : "html",
+			data : {
+				"shop_code" : shop_item[0],
+				"item_code" : shop_item[1]
+			},
+			cache : false,
+			success : function(data, textStatus) {
+				$('#testes').text(data);
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				// エラー処理
+			}
+		});
 	});
-	$("body").dblclick(function(){
-		$("#cli").text('mumumu');
+
+	$(".removecart").click(function() {
+		var shop_item = $(this).attr("id").split("_");
+		$.ajax({
+			url : "/demos/removecart",
+			type : "POST",
+			dataType : "html",
+			data : {
+				"shop_code" : shop_item[0],
+				"item_code" : shop_item[1]
+			},
+			cache : false,
+			success : function(data, textStatus) {
+				$('#testes').text(data);
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				// エラー処理
+			}
+		});
 	});
-	$("body").dblclick(function(){
-		$("#cli2").text('mumumu');
+
+	$(".clearcart").click(function() {
+		$.ajax({
+			url : "/demos/clearcart",
+			type : "POST",
+			dataType : "html",
+			cache : false,
+			success : function(data, textStatus) {
+				$('#testes').text(data);
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				// エラー処理
+			}
+		});
+	});
+
+	$.ajax({
+		url : "/demos/ajax",
+		dataType : "html",
+		cache : false,
+		success : function(data, textStatus) {
+			$('#testes').text(data);
+		},
+		error : function(xhr, textStatus, errorThrown) {
+			// エラー処理
+		}
 	});
 });
